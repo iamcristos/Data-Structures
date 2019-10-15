@@ -1,5 +1,5 @@
 import sys
-sys.path.append('../doubly_linked_list')
+sys.path.insert(1, '../doubly_linked_list')
 from doubly_linked_list import DoublyLinkedList
 
 
@@ -10,16 +10,18 @@ class Queue:
         self.storage = DoublyLinkedList()
 
     def enqueue(self, value):
-        self.storage.add_to_head(value)
         self.size += 1
-        pass
+        return self.storage.add_to_tail(value)
+        # pass
 
     def dequeue(self):
-        if (self.size > 0):
-            self.size -= 1
-            return self.storage.remove_from_head
-        pass
+        
+        if self.storage.head is None:
+            return
+        value = self.storage.remove_from_head()
+        return value
+        # pass
 
     def len(self):
         return self.size
-        pass
+        # pass
