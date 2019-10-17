@@ -12,21 +12,60 @@ class BinarySearchTree:
 
     # Insert the given value into the tree
     def insert(self, value):
+        current_value = self.value
+        if(current_value > value):
+            if(self.left == None):
+                return BinarySearchTree(value)
+            else:
+                return self.left.insert(value)
+        else:
+            if(self.right == None):
+                return BinarySearchTree(value)
+            else:
+                return self.right.insert(value)   
         pass
 
     # Return True if the tree contains the value
     # False if it does not
     def contains(self, target):
-        pass
+        # check if target is the current value
+        current_value = self.value
+        if (current_value == target):
+            return True
+        # check if target is greater than value
+        elif (current_value > target):
+            # check if left is empty
+            if (self.left == None):
+                return False
+            else:
+                return self.left.contains(target)
+        else:
+            if (self.right == None):
+                return False
+            else:
+                return self.right.contains(target)
 
     # Return the maximum value found in the tree
     def get_max(self):
-        pass
+        current_value = self.value
+        # check if the right is empty
+        if (self.right == None):
+            return current_value
+        # then recursively check the right
+        else:
+            return self.right.get_max()
 
     # Call the function `cb` on the value of each node
     # You may use a recursive or iterative approach
     def for_each(self, cb):
-        pass
+        if self.value != None:
+            cb(self.value)
+            #  check if the left has value
+            if self.left != None:
+                self.left.for_each(cb)
+            # check if the right is not None
+            if self.right != None:
+                self.right.for_each(cb)
 
     # DAY 2 Project -----------------------
 
